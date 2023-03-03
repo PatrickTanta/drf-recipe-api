@@ -1,5 +1,5 @@
 FROM python:3.11.2-alpine
-LABEL maintainer="Patrick Tanta"
+LABEL mantainer="Patrick Tanta"
 
 ENV PYTHONUNBUFFERED 1
 
@@ -12,8 +12,8 @@ EXPOSE 8000
 ARG DEV=false
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
-    apk add --update --no-cache postgresql-client && \
-    apk add --update --no-cache --virtual .tmp-build-dev build-base postgresql-dev musl-dev && \
+    apk add --update --no-cache postgresql-client jpeg-dev && \
+    apk add --update --no-cache --virtual .tmp-build-dev build-base postgresql-dev musl-dev zlib-dev linux-headers && \
     /py/bin/pip install -r /tmp/requirements.txt && \
     if [ $DEV = "true" ]; then /py/bin/pip install -r /tmp/requirements.dev.txt; fi && \
     rm -rf /tmp && \
@@ -23,6 +23,6 @@ RUN python -m venv /py && \
         --no-create-home \
         django-user
 
-ENV PATH="/py/bin/:$PATH"
+ENV PATH="/py/bin:$PATH"
 
 USER django-user
