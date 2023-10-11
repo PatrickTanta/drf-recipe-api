@@ -7,11 +7,15 @@ from drf_spectacular.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
     path(
         'api/docs/',
         SpectacularSwaggerView.as_view(url_name='api-schema'),
         name='api-docs'
     ),
+
+    # api
     path('api/user/', include('user.urls'), name='user'),
 ]
