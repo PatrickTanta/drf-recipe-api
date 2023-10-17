@@ -14,11 +14,7 @@ services:
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
-    environment:
-      - DB_HOST=${DB_HOST}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASS=${DB_PASS}
+    env_file: ${PWD}/.envs/.prod/.postgres
     depends_on:
       - db
 
@@ -28,10 +24,8 @@ services:
       - "5432:5432"
     volumes:
       - ${PWD}/volumes/app:/app
-    environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASS}
+    env_file: ${PWD}/.envs/.prod/.postgres
+
 
 volumes:
   dev-db-data:

@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ${PWD}/volumes/app:/app
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+
+# volumes:
+#   dev-db-data:
+#   dev-static-data:
