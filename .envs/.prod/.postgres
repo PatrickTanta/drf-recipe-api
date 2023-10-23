@@ -1,3 +1,7 @@
+POSTGRES_DB=recipedevdb
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=20144039Ff_
+
 DB_HOST=db
 DB_NAME=recipedevdb
 DB_USER=postgres
