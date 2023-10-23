@@ -10,23 +10,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
+    path("admin/", admin.site.urls),
     # documentation
-    path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
+    path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     path(
-        'api/docs/',
-        SpectacularSwaggerView.as_view(url_name='api-schema'),
-        name='api-docs'
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="api-schema"),
+        name="api-docs",
     ),
-
     # api
-    path('api/user/', include('user.urls'), name='user'),
+    path("api/user/", include("user.urls"), name="user"),
 ]
 
-
 if settings.DEBUG:
-    urlpatterns += static(
-        settings.MEDIA_URL,
-        document_row = settings.MEDIA_ROOT
-    )
+    urlpatterns += static(settings.MEDIA_URL, document_row=settings.MEDIA_ROOT)

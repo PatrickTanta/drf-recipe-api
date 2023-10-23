@@ -8,6 +8,7 @@ from django.contrib.auth.models import (
 )
 from model_utils.models import TimeStampedModel
 
+
 class CustomUserManager(BaseUserManager):
     """Manager for users"""
 
@@ -34,6 +35,7 @@ class CustomUserManager(BaseUserManager):
 
         return user
 
+
 class User(AbstractBaseUser, TimeStampedModel, PermissionsMixin):
     """Custom user model that supports using email instead of username."""
 
@@ -45,4 +47,3 @@ class User(AbstractBaseUser, TimeStampedModel, PermissionsMixin):
     objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
-
